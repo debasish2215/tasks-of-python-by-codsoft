@@ -1,0 +1,10 @@
+import random
+def generate_password(length):
+    alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%^&*+_"
+    password =""
+    for i in range(length):
+        password=password+random.choice(alphabets)
+    return(password)
+length = int(input("enter the required length for the poassword :"))
+password = generate_password(length)
+print("The generated password is :",password)

@@ -1,0 +1,76 @@
+import random
+
+# Game logic
+def determine_winner(user_move, computer_move):
+    if user_move == computer_move:
+        return "tie"
+    elif user_move == "rock" and computer_move == "scissors":
+        return "user wins"
+    elif user_move == "paper" and computer_move == "rock":
+        return "user wins"
+    elif user_move == "scissors" and computer_move == "paper":
+        return "user wins"
+    else:
+        return "computer wins"
+
+# User interface
+def display_results(user_move, computer_move, winner):
+    print("You chose:", user_move)
+    print("Computer chose:", computer_move)
+    if winner == "tie":
+        print("It's a tie!")
+    elif winner == "user wins":
+        print("You win!")
+    else:
+        print("Computer wins!")
+
+# Score tracking
+def track_score(user_score, computer_score, winner):
+    if winner == "user wins":
+        user_score += 1
+    elif winner == "computer wins":
+        computer_score += 1
+    return user_score, computer_score
+
+# Play again
+def play_again():
+    play_again_answer = input("Do you want to play again? (y/n): ")
+    if play_again_answer == "y":
+        return True
+    else:
+        return False
+
+# Main game loop
+def main():
+    user_score = 0
+    computer_score = 0
+    play_again_flag = True
+
+    while play_again_flag:
+        # Get user input
+        user_move = input("Choose rock, paper, or scissors: ")
+
+        # Generate a random move for the computer
+        computer_move = random.choice(["rock", "paper", "scissors"])
+
+        # Determine the winner
+        winner = determine_winner(user_move, computer_move)
+
+        # Display the results
+        display_results(user_move, computer_move, winner)
+
+        # Track the score
+        user_score, computer_score = track_score(user_score, computer_score, winner)
+
+        # Ask the user if they want to play again
+        play_again_flag = play_again()
+
+    # Display the final scores
+    print("Final scores:")
+    print("You:", user_score)
+    print("Computer:", computer_score)
+
+# Start the game
+if __name__ == "__main__":
+    main()
+  

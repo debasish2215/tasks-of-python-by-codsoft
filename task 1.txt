@@ -1,0 +1,42 @@
+import sys
+
+class ToDoList:
+    def __init__(self):
+        self.tasks = []
+
+    def add_task(self, task):
+        self.tasks.append(task)
+
+    def remove_task(self, task):
+        self.tasks.remove(task)
+
+    def complete_task(self, task):
+        self.tasks.remove(task)
+        print("Task '{}' completed!".format(task))
+
+    def print_list(self):
+        print("To-Do List:")
+        for i, task in enumerate(self.tasks):
+            print("[{}] {}".format(i + 1, task))
+
+    def main(self):
+        while True:
+            command = input("> ")
+
+            if command == "add":
+                task = input("Enter task: ")
+                self.add_task(task)
+            elif command == "remove":
+                task_index = int(input("Enter task index: "))
+                self.remove_task(self.tasks[task_index - 1])
+            elif command == "complete":
+                task_index = int(input("Enter task index: "))
+                self.complete_task(self.tasks[task_index - 1])
+            elif command == "list":
+                self.print_list()
+            elif command == "quit":
+                break
+
+if __name__ == "__main__":
+    todo_list = ToDoList()
+    todo_list.main()
